@@ -40,6 +40,8 @@ class Service
                 throw new ServerErrorException("Infusionsoft may return a 500 if the requested record isn't found. Error Message: " . $result->body, $result->responseCode);
             case 596:
                 throw new BadRequestException("Unknown Service. Error Message: " . $result->body, $result->responseCode);
+            case 404:
+                throw new BadRequestException("Resource not found. Error Message: " . $result->body, $result->responseCode);
             case 401:
                 throw new UnAuthorizedException("Got 401 response from Infusionsoft during call to " . static::$endPoint . " Error Message: " . $result->body, $result->responseCode);
             case 400:
