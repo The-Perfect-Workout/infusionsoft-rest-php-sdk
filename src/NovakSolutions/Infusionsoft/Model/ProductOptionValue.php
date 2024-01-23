@@ -1,21 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/23/18
- * Time: 7:20 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
 
 /**
- * Class Contact
+ * Class ProductOptionValue
  * @package NovakSolutions\Infusionsoft\Model
- * @property Address[] addresses
- * @property \DateTime birthday
- * @property EmailAddress[] email_addresses
- * @property int id
+ * @property int $id
+ * @property int $index
+ * @property bool $is_default
+ * @property string $label
+ * @property float $price_adjustment
+ * @property string $sku
  */
 class ProductOptionValue extends Model
 {

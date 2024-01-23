@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/23/18
- * Time: 7:20 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
@@ -13,31 +7,29 @@ use NovakSolutions\Infusionsoft\Service\OrderService;
 /**
  * Class Order
  * @package NovakSolutions\Infusionsoft\Model
- * @property int id
- * @property bool allow_payment
- * @property Contact contact
- * @property \DateTime creation_date
- * @property int lead_affiliate_id
- * @property \DateTime modification_date
- * @property string notes
- * @property \DateTime order_date
- * @property OrderItem[] order_items
- * @property PaymentPlan payment_plan
- * @property bool recurring
- * @property int refund_total
- * @property int sales_affiliate_id
- * @property OrderShipping shipping_information
- * @property string status
- * @property string terms
- * @property string title
- * @property float total
- * @property float total_due
- * @property float total_paid
-
+ * @property bool $allow_payment
+ * @property OrderContact $contact
+ * @property string $creation_date
+ * @property int $id
+ * @property int $lead_affiliate_id
+ * @property string $modification_date
+ * @property string $notes
+ * @property string $order_date
+ * @property OrderItem[] $order_items
+ * @property PaymentPlan $payment_plan
+ * @property bool $recurring
+ * @property int $refund_total
+ * @property int $sales_affiliate_id
+ * @property OrderShipping $shipping_information
+ * @property string $status
+ * @property string $terms
+ * @property string $title
+ * @property float $total
+ * @property float $total_due
+ * @property float $total_paid
  */
 class Order extends Model
 {
-
     protected static $serviceClassName = OrderService::class;
 
     protected static $fields = [

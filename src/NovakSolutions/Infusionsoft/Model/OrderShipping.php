@@ -1,22 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/23/18
- * Time: 7:20 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
-use NovakSolutions\Infusionsoft\Service\ContactService;
 
 /**
- * Class Contact
+ * Class OrderShipping
  * @package NovakSolutions\Infusionsoft\Model
- * @property Address[] addresses
- * @property \DateTime birthday
- * @property EmailAddress[] email_addresses
- * @property int id
+ * @property string $company
+ * @property string $country_code
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $line1
+ * @property string $line2
+ * @property string $locality
+ * @property string $middle_name
+ * @property string $phone
+ * @property string $region
+ * @property string $zip_code
+ * @property string $zip_four
  */
 class OrderShipping extends Model
 {

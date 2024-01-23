@@ -1,22 +1,19 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/23/18
- * Time: 7:20 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
-use NovakSolutions\Infusionsoft\Service\ContactService;
 
 /**
- * Class Contact
+ * Class PaymentPlan
  * @package NovakSolutions\Infusionsoft\Model
- * @property Address[] addresses
- * @property \DateTime birthday
- * @property EmailAddress[] email_addresses
- * @property int id
+ * @property bool $auto_charge
+ * @property int $credit_card_id
+ * @property int $days_between_payments
+ * @property float $initial_payment_amount
+ * @property string $initial_payment_date
+ * @property int $number_of_payments
+ * @property PaymentPlanPaymentGateway $payment_gateway
+ * @property string $plan_start_date
  */
 class PaymentPlan extends Model
 {

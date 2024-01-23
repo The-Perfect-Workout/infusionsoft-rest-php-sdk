@@ -1,21 +1,28 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/23/18
- * Time: 7:20 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
 
 /**
- * Class Contact
+ * Class ProductOption
  * @package NovakSolutions\Infusionsoft\Model
- * @property Address[] addresses
- * @property \DateTime birthday
- * @property EmailAddress[] email_addresses
- * @property int id
+ * @property int $id
+ * @property bool $allow_spaces
+ * @property bool $can_contain_character
+ * @property bool $can_contain_number
+ * @property bool $can_end_with_character
+ * @property bool $can_end_with_number
+ * @property bool $can_start_with_character
+ * @property bool $can_start_with_number
+ * @property int $display_index
+ * @property string $label
+ * @property int $max_chars
+ * @property int $min_chars
+ * @property string $name
+ * @property bool $required
+ * @property string $text_message
+ * @property string $type
+ * @property array $values
  */
 class ProductOption extends Model
 {

@@ -1,29 +1,31 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/23/18
- * Time: 7:20 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
+use NovakSolutions\Infusionsoft\Model\Traits\SavableTrait;
 use NovakSolutions\Infusionsoft\Service\ContactService;
 
 /**
  * Class Contact
  * @package NovakSolutions\Infusionsoft\Model
- * @property Address[] addresses
- * @property \DateTime birthday
- * @property EmailAddress[] email_addresses
- * @property PhoneNumber[] phone_numbers
- * @property string family_name
- * @property string given_name
- * @property int id
+ * @property Address[] $addresses
+ * @property string $anniversary
+ * @property string $birthday
+ * @property ContactCompany $company
+ * @property string $contact_type
+ * @property CustomField[] $custom_fields
+ * @property string $date_created
+ * @property EmailAddress[] $email_addresses
+ * @property string $family_name
+ * @property string $given_name
+ * @property FaxNumber[] $fax_numbers
+ * @property int $id
+ * @property PhoneNumber[] $phone_numbers
+ * @property SocialAccount[] $social_accounts
  */
 class Contact extends Model
 {
-    use Traits\SavableTrait;
+    use SavableTrait;
 
     protected static $serviceClassName = ContactService::class;
 

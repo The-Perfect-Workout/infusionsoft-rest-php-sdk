@@ -1,22 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/23/18
- * Time: 7:20 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
-use NovakSolutions\Infusionsoft\Service\ContactService;
 
 /**
- * Class Contact
+ * Class OrderItem
  * @package NovakSolutions\Infusionsoft\Model
- * @property Address[] addresses
- * @property \DateTime birthday
- * @property EmailAddress[] email_addresses
- * @property int id
+ * @property float $cost
+ * @property string $description
+ * @property float $discount
+ * @property int $id
+ * @property string $name
+ * @property string $notes
+ * @property float $price
+ * @property OrderItemProduct $product
+ * @property int $quantity
+ * @property string $type
  */
 class OrderItem extends Model
 {

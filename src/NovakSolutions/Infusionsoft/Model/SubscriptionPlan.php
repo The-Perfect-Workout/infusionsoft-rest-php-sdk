@@ -1,21 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/23/18
- * Time: 7:20 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
 
 /**
- * Class Contact
+ * Class SubscriptionPlan
  * @package NovakSolutions\Infusionsoft\Model
- * @property Address[] addresses
- * @property \DateTime birthday
- * @property EmailAddress[] email_addresses
- * @property int id
+ * @property int $id
+ * @property bool $active
+ * @property int $cycle
+ * @property int $frequency
+ * @property int $number_of_cycles
+ * @property float $plan_price
+ * @property int $subscription_plan_index
+ * @property string $subscription_plan_name
+ * @property string $url
  */
 class SubscriptionPlan extends Model
 {

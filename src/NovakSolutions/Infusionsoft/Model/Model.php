@@ -1,18 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/26/18
- * Time: 12:34 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
-
-
 use NovakSolutions\Infusionsoft\Exception\InvalidFieldException;
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
-//use function PHPSTORM_META\type;
 
+/**
+ * Class Model
+ * @package NovakSolutions\Infusionsoft\Model
+ */
 class Model
 {
     protected static $primaryKeyFieldName = 'id';

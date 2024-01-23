@@ -1,31 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/26/18
- * Time: 2:37 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
-
-
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
+use NovakSolutions\Infusionsoft\Model\Traits\DeletableTrait;
+use NovakSolutions\Infusionsoft\Model\Traits\SavableTrait;
 use NovakSolutions\Infusionsoft\Service\HookService;
-use NovakSolutions\Infusionsoft\Service\Traits\DeleteTrait;
 
 /**
  * Class Hook
  * @package NovakSolutions\Infusionsoft\Model
- * @property string eventKey
- * @property string hookUrl
- * @property string key
- * @property string status
+ * @property string $eventKey
+ * @property string $hookUrl
+ * @property string $key
+ * @property string $status
  */
-
 class Hook extends Model
 {
-    use Traits\SavableTrait;
-    use Traits\DeletableTrait;
+    use SavableTrait;
+    use DeletableTrait;
 
     public static $primaryKeyFieldName = 'key';
     protected static $serviceClassName = HookService::class;
