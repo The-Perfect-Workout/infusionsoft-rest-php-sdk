@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/23/18
- * Time: 7:20 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
@@ -13,26 +7,25 @@ use NovakSolutions\Infusionsoft\Service\CampaignService;
 /**
  * Class Campaign
  * @package NovakSolutions\Infusionsoft\Model
- * @property int id
- * @property int active_contact_count
- * @property int completed_contact_count
- * @property int created_by_global_id
- * @property DateTime date_created
- * @property string error_message
- * @property bool locked
- * @property string name
- * @property DateTime published_date
- * @property bool published_status
- * @property string published_time_zone
- * @property int count
- * @property string next
- * @property string previous
- * @property CampaignGoal[] goals
- * @property CampaignSequence[] sequences
+ * @property int $id
+ * @property int $active_contact_count
+ * @property int $completed_contact_count
+ * @property int $created_by_global_id
+ * @property string $date_created
+ * @property string $error_message
+ * @property bool $locked
+ * @property string $name
+ * @property string $published_date
+ * @property bool $published_status
+ * @property string $published_time_zone
+ * @property int $count
+ * @property string $next
+ * @property string $previous
+ * @property CampaignGoal[] $goals
+ * @property CampaignSequence[] $sequences
  */
 class Campaign extends Model
 {
-
     protected static $serviceClassName = CampaignService::class;
 
     protected static $fields = [

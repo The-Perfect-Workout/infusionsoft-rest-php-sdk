@@ -1,16 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/26/18
- * Time: 2:42 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
-
-
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
 
+/**
+ * Class CustomField
+ * @package NovakSolutions\Infusionsoft\Model
+ * @property string $content
+ * @property int $id
+ */
 class CustomField extends Model
 {
     protected static $fields = [

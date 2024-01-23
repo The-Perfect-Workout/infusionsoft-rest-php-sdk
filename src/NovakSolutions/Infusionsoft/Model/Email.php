@@ -1,20 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 7/23/18
- * Time: 7:20 PM
- */
 
 namespace NovakSolutions\Infusionsoft\Model;
-
 use NovakSolutions\Infusionsoft\Enum\FieldTypes;
 
 /**
- * Class Contact
+ * Class Email
  * @package NovakSolutions\Infusionsoft\Model
- * @property String email
- * @property Address[] addresses
+ * @property int $contact_id
+ * @property string $headers
+ * @property int $id
+ * @property string $opened_date
+ * @property string $received_date
+ * @property string $sent_date
+ * @property string $sent_from_address
+ * @property string $sent_from_reply_address
+ * @property string $sent_to_address
+ * @property string $sent_to_bcc_addresses
+ * @property string $sent_to_cc_addresses
+ * @property string $subject
  */
 class Email extends Model
 {
