@@ -22,7 +22,7 @@ class OrderItemService extends Service
      * @throws \NovakSolutions\Infusionsoft\Exception\UnknownResponseException
      */
     public static function delete($orderId, $orderItemId) {
-        $url = static::$endPoint . '/' . $orderId . '/orderItems/' . $orderItemId;
+        $url = static::$endPoint . '/' . $orderId . '/items/' . $orderItemId;
         $result = Registry::$WebRequester->request($url, 'DELETE');
         static::throwExceptionIfError($result);
         return true;
