@@ -2,13 +2,8 @@
 
 namespace NovakSolutions\Infusionsoft\Service;
 
-use NovakSolutions\Infusionsoft\Model\Order;
 use NovakSolutions\Infusionsoft\Model\OrderItem;
-use NovakSolutions\Infusionsoft\Model\PaymentPlan;
 use NovakSolutions\Infusionsoft\Registry;
-use NovakSolutions\Infusionsoft\Service\Traits\CreateTrait;
-use NovakSolutions\Infusionsoft\Service\Traits\RetrieveTrait;
-use NovakSolutions\Infusionsoft\WebRequestResult;
 
 class OrderItemService extends Service
 {
