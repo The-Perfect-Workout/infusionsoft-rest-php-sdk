@@ -40,4 +40,48 @@ class OrderService extends Service
 
         return true;
     }
+
+    public static function getOrderTransactions(
+        $orderId,
+        $limit = null,
+        $offset = null,
+        $since = null,
+        $until = null,
+        $accessToken = null
+    ) {
+        $url = static::$endPoint . '/' . $orderId . '/transactions';
+
+        // Prep query vars
+        $query = [];
+        if ($limit) {
+            $query['limit'] = $limit;
+        }
+        if ($offset) {
+            $query['offset'] = $offset;
+        }
+        if ($since) {
+            $query['since'] = $since;
+        }
+        if ($until) {
+            $query['until'] = $until;
+        }
+        if (count($query) > 0) {
+            $url .= '?' . http_build_query($query);
+        }
+
+        //Make Call...
+        /** @var WebRequestResult $result */
+        $result = Registry::$WebRequester->request($url, 'GET', [], $accessToken);
+        static::throwExceptionIfError($result);
+
+        $data = json_decode($result->body, true);
+        if(isset($data['transactions']) && is_array($data['transactions'])){
+            $objects = [];
+            foreach($data['transactions'] as $item){
+                $objects[] = new \NovakSolutions\Infusionsoft\Model\Transaction($item);
+            }
+            return $objects;
+        }
+        return [];
+    }
 }
