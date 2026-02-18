@@ -10,6 +10,7 @@ namespace NovakSolutions\Infusionsoft\Service;
 
 use NovakSolutions\Infusionsoft\Model\Order;
 use NovakSolutions\Infusionsoft\Model\PaymentPlan;
+use NovakSolutions\Infusionsoft\Model\Transaction;
 use NovakSolutions\Infusionsoft\Registry;
 use NovakSolutions\Infusionsoft\Service\Traits\RetrieveTrait;
 use NovakSolutions\Infusionsoft\WebRequestResult;
@@ -29,6 +30,44 @@ class OrderService extends Service
         'contact_id',
         'product_id',
     );
+
+    public static function createPayment(
+        $orderId,
+        $chargeNow,
+        $applyToCommissions,
+        $notes,
+        $paymentDate,
+        $paymentMethod,
+        $paymentGatewayId,
+        $amount,
+        $creditCardId = null,
+        $accessToken = null
+    ) {
+        $url = static::$endPoint . '/' . $orderId . '/payments';
+
+        $body = [
+            'apply_to_commissions' => $applyToCommissions,
+            'charge_now' => $chargeNow,
+            'notes' => $notes,
+            'date' => $paymentDate,
+            'payment_method_type' => $paymentMethod,
+            'payment_gateway_id' => $paymentGatewayId,
+            'payment_amount' => $amount,
+        ];
+
+        if ($creditCardId !== null) {
+            $body['credit_card_id'] = $creditCardId;
+        }
+
+        //Make Call...
+        /** @var WebRequestResult $result */
+        $result = Registry::$WebRequester->request($url, 'POST', json_encode($body), $accessToken);
+        static::throwExceptionIfError($result);
+
+        $data = json_decode($result->body, true);
+
+        return new Transaction($data);
+    }
 
     public static function replaceOrderPayPlan($orderId, PaymentPlan $paymentPlan, $accessToken = null){
         $url = static::$endPoint . '/' . $orderId . '/paymentPlan';
