@@ -17,7 +17,7 @@ class Model
 
     protected $data = array();
 
-    public function __construct(array $data = null, $authTokenKey = '')
+    public function __construct(?array $data = null, $authTokenKey = '')
     {
          if($data != null){
              $this->fromArray($data);
