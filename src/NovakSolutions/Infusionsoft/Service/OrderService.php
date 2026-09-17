@@ -8,12 +8,15 @@
 
 namespace NovakSolutions\Infusionsoft\Service;
 
+use NovakSolutions\Infusionsoft\Exception\RestException;
+use NovakSolutions\Infusionsoft\Model\InvoiceOrderPayment;
 use NovakSolutions\Infusionsoft\Model\Order;
 use NovakSolutions\Infusionsoft\Model\PaymentPlan;
 use NovakSolutions\Infusionsoft\Model\Transaction;
 use NovakSolutions\Infusionsoft\Registry;
 use NovakSolutions\Infusionsoft\Service\Traits\RetrieveTrait;
 use NovakSolutions\Infusionsoft\WebRequestResult;
+use NovakSolutions\Infusionsoft\WebRequester;
 
 class OrderService extends Service
 {
@@ -67,6 +70,70 @@ class OrderService extends Service
         $data = json_decode($result->body, true);
 
         return new Transaction($data);
+    }
+
+    /**
+     * Update a payment that is already on an order. See https://developer.infusionsoft.com/docs/restv2/#tag/Orders/operation/updatePayment
+     *
+     * This is a v2 endpoint; the rest of this SDK talks to v1.
+     *
+     * Only the fields passed here are sent, through the endpoint's update_mask, so the rest are left alone.
+     * Infusionsoft honors $amount and $paymentDate only for manually recorded payments (cash, check, and the
+     * other manual types). The payment method type of an existing payment cannot be changed this way.
+     *
+     * @param string|int $orderId
+     * @param string|int $invoiceOrderPaymentId The invoice order payment id - the `id` from Retrieve Payments, not its `payment_id`.
+     * @param float|null $amount
+     * @param string|null $paymentDate ISO-8601, e.g. 2024-05-21T23:00:00Z
+     * @param string|null $notes
+     * @param string|null $accessToken
+     * @return InvoiceOrderPayment
+     * @throws \NovakSolutions\Infusionsoft\Exception\BadRequestException
+     * @throws \NovakSolutions\Infusionsoft\Exception\RestException
+     * @throws \NovakSolutions\Infusionsoft\Exception\UnAuthorizedException
+     * @throws \NovakSolutions\Infusionsoft\Exception\UnknownResponseException
+     */
+    public static function updatePayment(
+        $orderId,
+        $invoiceOrderPaymentId,
+        $amount = null,
+        $paymentDate = null,
+        $notes = null,
+        $accessToken = null
+    ) {
+        $body = [];
+
+        if ($amount !== null) {
+            $body['payment_amount'] = $amount;
+        }
+        if ($paymentDate !== null) {
+            $body['payment_time'] = $paymentDate;
+        }
+        if ($notes !== null) {
+            $body['notes'] = $notes;
+        }
+
+        if (count($body) === 0) {
+            throw new RestException('updatePayment was called without anything to update');
+        }
+
+        // update_mask repeats the parameter once per field, which is how the endpoint expects a list.
+        // http_build_query() would index them instead (update_mask[0]=...), which the endpoint does not read.
+        $updateMask = [];
+        foreach (array_keys($body) as $field) {
+            $updateMask[] = 'update_mask=' . rawurlencode($field);
+        }
+
+        $url = static::$endPoint . '/' . $orderId . '/payments/' . $invoiceOrderPaymentId . '?' . implode('&', $updateMask);
+
+        //Make Call...
+        /** @var WebRequestResult $result */
+        $result = Registry::$WebRequester->request($url, 'PATCH', json_encode($body), $accessToken, WebRequester::API_VERSION_2);
+        static::throwExceptionIfError($result);
+
+        $data = json_decode($result->body, true);
+
+        return new InvoiceOrderPayment($data);
     }
 
     public static function replaceOrderPayPlan($orderId, PaymentPlan $paymentPlan, $accessToken = null){
