@@ -82,7 +82,7 @@ class OrderService extends Service
      * other manual types). The payment method type of an existing payment cannot be changed this way.
      *
      * @param string|int $orderId
-     * @param string|int $invoiceOrderPaymentId The invoice order payment id - the `id` from Retrieve Payments, not its `payment_id`.
+     * @param string|int $paymentId The invoice order payment id - the `id` from Retrieve Payments, not its `payment_id`.
      * @param float|null $amount
      * @param string|null $paymentDate ISO-8601, e.g. 2024-05-21T23:00:00Z
      * @param string|null $notes
@@ -95,7 +95,7 @@ class OrderService extends Service
      */
     public static function updatePayment(
         $orderId,
-        $invoiceOrderPaymentId,
+        $paymentId,
         $amount = null,
         $paymentDate = null,
         $notes = null,
@@ -124,7 +124,7 @@ class OrderService extends Service
             $updateMask[] = 'update_mask=' . rawurlencode($field);
         }
 
-        $url = static::$endPoint . '/' . $orderId . '/payments/' . $invoiceOrderPaymentId . '?' . implode('&', $updateMask);
+        $url = static::$endPoint . '/' . $orderId . '/payments/' . $paymentId . '?' . implode('&', $updateMask);
 
         //Make Call...
         /** @var WebRequestResult $result */
