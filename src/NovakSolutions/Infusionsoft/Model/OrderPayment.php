@@ -6,7 +6,7 @@ use NovakSolutions\Infusionsoft\Enum\FieldTypes;
 /**
  * A payment applied to an order's invoice, as returned by the v2 Orders payment endpoints.
  *
- * Class InvoiceOrderPayment
+ * Class OrderPayment
  * @package NovakSolutions\Infusionsoft\Model
  * @property string $id The invoice order payment id, which is what the payment endpoints address.
  * @property float $amount
@@ -19,7 +19,7 @@ use NovakSolutions\Infusionsoft\Enum\FieldTypes;
  * @property bool $skip_commission
  * @property string $refund_invoice_payment_id
  */
-class InvoiceOrderPayment extends Model
+class OrderPayment extends Model
 {
     protected static $fields = [
         'id' => FieldTypes::STRING,

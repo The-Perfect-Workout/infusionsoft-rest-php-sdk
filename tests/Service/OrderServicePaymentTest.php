@@ -3,7 +3,7 @@
 namespace NovakSolutions\Infusionsoft\Service;
 
 use NovakSolutions\Infusionsoft\Exception\RestException;
-use NovakSolutions\Infusionsoft\Model\InvoiceOrderPayment;
+use NovakSolutions\Infusionsoft\Model\OrderPayment;
 use NovakSolutions\Infusionsoft\Registry;
 use NovakSolutions\Infusionsoft\WebRequestResult;
 use NovakSolutions\Infusionsoft\WebRequester;
@@ -78,7 +78,7 @@ class OrderServicePaymentTest extends TestCase
             json_decode($call['payload'], true)
         );
 
-        $this->assertTrue($payment instanceof InvoiceOrderPayment);
+        $this->assertTrue($payment instanceof OrderPayment);
         $this->assertEquals('456', $payment->id);
         $this->assertEquals(43.3, $payment->amount);
         $this->assertEquals('321', $payment->payment_id);

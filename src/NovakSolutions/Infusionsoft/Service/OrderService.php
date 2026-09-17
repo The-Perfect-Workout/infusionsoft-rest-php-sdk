@@ -9,7 +9,7 @@
 namespace NovakSolutions\Infusionsoft\Service;
 
 use NovakSolutions\Infusionsoft\Exception\RestException;
-use NovakSolutions\Infusionsoft\Model\InvoiceOrderPayment;
+use NovakSolutions\Infusionsoft\Model\OrderPayment;
 use NovakSolutions\Infusionsoft\Model\Order;
 use NovakSolutions\Infusionsoft\Model\PaymentPlan;
 use NovakSolutions\Infusionsoft\Model\Transaction;
@@ -87,7 +87,7 @@ class OrderService extends Service
      * @param string|null $paymentDate ISO-8601, e.g. 2024-05-21T23:00:00Z
      * @param string|null $notes
      * @param string|null $accessToken
-     * @return InvoiceOrderPayment
+     * @return OrderPayment
      * @throws \NovakSolutions\Infusionsoft\Exception\BadRequestException
      * @throws \NovakSolutions\Infusionsoft\Exception\RestException
      * @throws \NovakSolutions\Infusionsoft\Exception\UnAuthorizedException
@@ -133,7 +133,7 @@ class OrderService extends Service
 
         $data = json_decode($result->body, true);
 
-        return new InvoiceOrderPayment($data);
+        return new OrderPayment($data);
     }
 
     public static function replaceOrderPayPlan($orderId, PaymentPlan $paymentPlan, $accessToken = null){
