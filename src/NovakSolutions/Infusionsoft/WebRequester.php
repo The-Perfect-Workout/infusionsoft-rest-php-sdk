@@ -20,6 +20,10 @@ class WebRequester
 
     const GET_PARAMETER = 'get_parameter';
 
+    const API_VERSION_1 = 'v1';
+
+    const API_VERSION_2 = 'v2';
+
     public function __construct()
     {
     }
@@ -29,7 +33,7 @@ class WebRequester
         return in_array($requestVerb, ['POST', 'PUT', 'PATCH']);
     }
 
-    public function request($endPoint, $requestVerb, $payload = null, $accessToken = null)
+    public function request($endPoint, $requestVerb, $payload = null, $accessToken = null, $apiVersion = self::API_VERSION_1)
     {
         if($accessToken == null){
             $accessToken = Registry::$defaultAccessToken;
@@ -39,9 +43,13 @@ class WebRequester
             throw new RestException('Invalid http verb - ' . $requestVerb);
         }
 
+        if(!in_array($apiVersion, [self::API_VERSION_1, self::API_VERSION_2])){
+            throw new RestException('Invalid api version - ' . $apiVersion);
+        }
+
         $ch = curl_init();
 
-        $url = 'https://api.infusionsoft.com/crm/rest/v1' . $endPoint;
+        $url = 'https://api.infusionsoft.com/crm/rest/' . $apiVersion . $endPoint;
 
         //Add Url Params
         $urlParams = [];
